@@ -1,0 +1,94 @@
+body {
+    background: #f3f3f3;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+.todo-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-width: 370px;
+}
+.input-section {
+    display: flex;
+    margin-bottom: 1.2rem;
+}
+#todo-input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+}
+#add-btn {
+    padding: 0.53rem 1.3rem;
+    border: none;
+    background: #2b80ff;
+    color: #fff;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+#add-btn:hover {
+    background: #1a59a7;
+}
+#todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#todo-list li {
+    background: #f9f9f9;
+    border: 1px solid #ececec;
+    padding: 0.7rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#todo-list li.completed span {
+    text-decoration: line-through;
+    color: #999;
+}
+.delete-btn {
+    border: none;
+    background: #ff3e3e;
+    color: #fff;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+.delete-btn:hover {
+    background: #cf2b2b;
+}
+.progress-tracer {
+    margin-bottom: 1.2rem;
+}
+#progress-text {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #555;
+}
+.progress-bar-bg {
+    width: 100%;
+    height: 12px;
+    background: #e1e1e1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.progress-bar {
+    background: #2b80ff;
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s;
+    border-radius: 8px;
+}
