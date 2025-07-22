@@ -131,7 +131,8 @@ def main():
     }
     
     response = graph.invoke(_state)
+    parsed_response = response["llm_result"]
+    print(f'🤖: {parsed_response}\nAccuracy:{response["accuracy_percentage"]}%\nIs coding Question : {response["is_coding_question"]}\n')
     
-    print(response)
 
 main() 
