@@ -1,3 +1,11 @@
 .env
 ToDo-list-Backend/.env
 ToDo-list/.env
+02-vector_embeddings/.env
+04_agent/.env
+05-rag-1/.env
+06langGraph/.env
+CursorAI/.env
+Project-personna AI/.env
+rag/.env
+rag_project/.env

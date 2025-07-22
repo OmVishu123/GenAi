@@ -7,16 +7,25 @@ import requests
 load_dotenv()
 client = OpenAI()
 
-def write_file(data: dict):
-    path = data.get("path")
-    content = data.get("content")
+def write_file(data):
     try:
+        # Parse string to dict if needed
+        if isinstance(data, str):
+            data = json.loads(data)
+        
+        path = data.get("path")
+        content = data.get("content")
+
         with open(path, "w") as f:
             f.write(content)
         return f"✅ Successfully wrote to {path}"
+
+    except json.JSONDecodeError:
+        return "❌ Invalid JSON input."
+
     except Exception as e:
         return f"❌ Failed to write to file: {e}"
-    
+
 def run_command(cmd: str):
     result = os.system(cmd)
     return result

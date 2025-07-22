@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Stock Predictor</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 32px; }
+        .container { background: #fff; padding: 2em; border-radius: 8px; max-width: 450px; margin: 40px auto; box-shadow: 0 0 8px #ddd; }
+        .headlines { margin-top: 1em; }
+        .prediction { font-weight: bold; margin: .5em 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Stock Predictor</h2>
+    <form method="POST">
+        <label for="stock">Enter Stock Ticker (e.g., AAPL):</label><br>
+        <input type="text" name="stock" id="stock" required value="{{stock_name}}"><br><br>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <div class="prediction">
+            Prediction: The stock price may <b>{{ prediction }}</b>.
+            {% if duration %}<br>Recommended buy/sell window: {{ duration }}.{% endif %}
+        </div>
+    {% endif %}
+
+    {% if headlines %}
+        <div class="headlines">
+            <h4>Recent News Headlines:</h4>
+            <ul>
+                {% for h in headlines %}
+                    <li>{{ h }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
