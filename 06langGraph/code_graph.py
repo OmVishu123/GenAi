@@ -21,6 +21,7 @@ class State(TypedDict):
     is_coding_question: bool | None
     
 def classify_message(state :State):
+    print("⚠️ Classify message")
     query = state["user_query"]
     SYSTEM_PROMPT = '''
     You are an AI assistant. Your job is to detect if the user's query is related to coding question or not.
@@ -45,12 +46,14 @@ def classify_message(state :State):
     return state
 
 def route_query(state : State)-> Literal["general_query" , "coding_query"]:
+    print("⚠️ Routing")
     is_coding = state["is_coding_question"]
     if is_coding:
         return "coding_query"
     return "general_query"
 
 def general_query(state : State):
+    print("⚠️ General query")
     query = state["user_query"]
     response = client.chat.completions.create(
         model="gpt-4.1-mini",
@@ -62,6 +65,7 @@ def general_query(state : State):
     return state
 
 def coding_query(state : State):
+    print("⚠️ Coding query")
     query = state["user_query"]
     
     SYSTEM_PROMPT = '''
@@ -79,11 +83,12 @@ def coding_query(state : State):
     return state
 
 def coding_validate_query(state : State):
+    print("⚠️ Validating query")
     query = state["user_query"]
     llm_code = state["llm_result"]
     
     SYSTEM_PROMPT = f'''
-    You are Expert in calculating accuracy of the code according to the user's query
+    You are an Expert in calculating accuracy of the code according to the user's query
     Return the percentage of accuracy.
     User Query : {query}
     Code : {llm_code}
@@ -130,9 +135,13 @@ def main():
         "llm_result":None
     }
     
-    response = graph.invoke(_state)
-    parsed_response = response["llm_result"]
-    print(f'🤖: {parsed_response}\nAccuracy:{response["accuracy_percentage"]}%\nIs coding Question : {response["is_coding_question"]}\n')
+    # response = graph.invoke(_state)
+    # parsed_response = response["llm_result"]
+    # print(f'🤖: {parsed_response}\nAccuracy:{response["accuracy_percentage"]}%\nIs coding Question : {response["is_coding_question"]}\n')
+    #stream a graph
+    for event in graph.stream(_state):
+            print(f"Event :{event}\n")
+            
     
 
 main() 
